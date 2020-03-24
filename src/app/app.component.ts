@@ -6,5 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'easier-client';
+
+  newStation: Station = {
+    name: "Beispiel 2"
+  }
+
+  classOfButton = "btn btn-primary";
+
+  setStationName() {
+    this.newStation.name = "Neuer Wert";
+    this.classOfButton = "btn btn-danger";
+  }
+}
+
+interface Station {
+  name: string;
 }
