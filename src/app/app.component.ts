@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Station } from './_interfaces/station';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +9,30 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   newStation: Station = {
-    name: "Beispiel 2"
+    name: "",
+    id: ""
   }
 
-  classOfButton = "btn btn-primary";
+  lastSavedStation: Station = null;
 
-  setStationName() {
-    this.newStation.name = "Neuer Wert";
-    this.classOfButton = "btn btn-danger";
+  allStations: Station[] = [];
+
+  requestInProgress = false;
+
+  createStation() {
+    this.requestInProgress = true;
+    setTimeout(() => {
+      this.newStation.id = new Date().getTime() + "";
+      this.allStations.push(this.newStation);
+      this.requestInProgress = false;
+      this.lastSavedStation = this.newStation;
+      this.newStation = {
+        name: "",
+        id: ""
+      }
+      setTimeout(() => {
+        this.lastSavedStation = null;
+      }, 5000);
+    }, 2000);
   }
-}
-
-interface Station {
-  name: string;
 }
