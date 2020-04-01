@@ -1,58 +1,8 @@
 <div class="row">
   <div class="col-3">
-    <h3>Navigation</h3>
-    <ul>
-      <li>Übersicht</li>
-      <li>Senderverwaltung</li>
-      <li>...</li>
-    </ul>
+    <app-navigation></app-navigation>
   </div>
   <div class="col-9">
-    <h1>Senderverwaltung</h1>
-
-    <div class="card">
-      <div class="card-header">
-        Neuen Sender anlegen
-      </div>
-      <div class="card-body">
-        <form>
-          <div class="form-group">
-            <label for="inputName">Name</label>
-            <input [(ngModel)]="newStation.name" name="newStation.name" type="text" class="form-control" id="inputName">
-          </div>
-          <button *ngIf="!requestInProgress" type="button" class="btn btn-primary" (click)="createStation()">Sender anlegen</button>
-          <button *ngIf="requestInProgress" class="btn btn-primary" type="button" disabled>
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            In Arbeit...
-          </button>
-        </form>
-        <br/>
-        <div *ngIf="lastSavedStation" class="alert alert-success" role="alert">
-          <div>Neuer Sender: {{lastSavedStation.name}} {{lastSavedStation.id}}</div>
-        </div>
-      </div>
-    </div>
-
-    <br/>
-
-    <div class="card" *ngIf="allStations.length > 0">
-      <div class="card-header">
-        Senderliste
-      </div>
-      <div class="card-body">
-        <table class="table table-sm">
-          <thead>
-            <th>Id</th>
-            <th>Name</th>
-          </thead>
-          <tbody>
-            <tr *ngFor="let station of allStations">
-              <td>{{station.id}}</td>
-              <td>{{station.name}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <app-station></app-station>
   </div>
 </div>
