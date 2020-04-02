@@ -9,6 +9,7 @@ import { StationComponent } from './_component/station/station.component';
 import { StationListComponent } from './_component/station-list/station-list.component';
 import { EditComponent } from './_component/edit/edit.component';
 import { CardComponent } from './_component/card/card.component';
+import { HomeComponent } from './_component/home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CardComponent } from './_component/card/card.component';
     StationComponent,
     StationListComponent,
     EditComponent,
-    CardComponent
+    CardComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
