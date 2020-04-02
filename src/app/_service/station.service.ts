@@ -8,17 +8,26 @@ import { Observable } from 'rxjs';
 })
 export class StationService {
 
+
   httpClient: HttpClient;
 
   constructor(httpClient: HttpClient) {
     this.httpClient = httpClient;
   }
 
-  createStation(station: Station): Observable<any> {
+  create(station: Station): Observable<any> {
     return this.httpClient.post("http://localhost:8080/stations", station);
   }
 
-  getAllStations(): Observable<any> {
+  update(station: Station): Observable<any> {
+    return this.httpClient.put(`http://localhost:8080/stations/${station.id}`, station);
+  }
+
+  getAll(): Observable<any> {
     return this.httpClient.get("http://localhost:8080/stations");
+  }
+
+  delete(station: Station): Observable<any> {
+    return this.httpClient.delete(`http://localhost:8080/stations/${station.id}`);
   }
 }

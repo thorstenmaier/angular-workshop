@@ -11,17 +11,58 @@ export class StationComponent {
 
   stations: Station[] = [];
 
+  selectedStation: Station = this.createEmptyStation();
+
   stationService: StationService;
+
+  requestInProgress = false;
 
   constructor(stationService: StationService) {
     this.stationService = stationService;
-    this.stationService.getAllStations().subscribe((data) => {
+    this.loadAllStations();
+  }
+
+  onCreate() {
+    this.requestInProgress = true;
+    this.stationService.create(this.selectedStation).subscribe((stationFromServer) => {
+      this.requestInProgress = false;
+      this.stations.push(stationFromServer);
+      this.selectedStation = this.createEmptyStation();
+    });
+  }
+
+  onUpdate() {
+    this.stationService.update(this.selectedStation).subscribe((stationFromServer) => {
+      this.selectedStation = this.createEmptyStation();
+      this.loadAllStations();
+    });
+  }
+
+  onCancel() {
+    this.selectedStation = this.createEmptyStation();
+  }
+
+  onSelect(station: Station) {
+    this.selectedStation = JSON.parse(JSON.stringify(station));
+  }
+
+  onDelete() {
+    this.stationService.delete(this.selectedStation).subscribe((result) => {
+      this.selectedStation = this.createEmptyStation();
+      this.loadAllStations();
+    });
+  }
+
+  private loadAllStations() {
+    this.stationService.getAll().subscribe((data) => {
       this.stations = data["_embedded"]["stations"]
     });
   }
 
-  onCreated(station: Station) {
-    this.stations.push(station);
+  private createEmptyStation(): Station {
+    return {
+      id: "",
+      name: ""
+    };
   }
-  
 }

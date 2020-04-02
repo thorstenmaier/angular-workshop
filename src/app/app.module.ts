@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './_component/navigation/navigation.component';
 import { StationComponent } from './_component/station/station.component';
-import { StationEditComponent } from './_component/station-edit/station-edit.component';
 import { StationListComponent } from './_component/station-list/station-list.component';
 import { EditComponent } from './_component/edit/edit.component';
 import { CardComponent } from './_component/card/card.component';
@@ -16,8 +15,7 @@ import { CardComponent } from './_component/card/card.component';
     AppComponent,
     NavigationComponent,
     StationComponent,
-    StationEditComponent,
-    StationListComponent
+    StationListComponent,
     EditComponent,
     CardComponent
   ],
