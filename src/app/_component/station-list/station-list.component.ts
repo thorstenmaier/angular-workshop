@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Station } from 'src/app/_interfaces/station';
 
 @Component({
@@ -10,5 +10,12 @@ export class StationListComponent {
 
   @Input("stations")
   allStations: Station[];
+
+  @Output()
+  select = new EventEmitter<any>();
+
+  onSelect(station: Station) {
+    this.select.emit(station);
+  }
 
 }
