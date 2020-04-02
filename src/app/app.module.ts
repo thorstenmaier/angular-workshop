@@ -10,6 +10,17 @@ import { StationListComponent } from './_component/station-list/station-list.com
 import { EditComponent } from './_component/edit/edit.component';
 import { CardComponent } from './_component/card/card.component';
 import { HomeComponent } from './_component/home/home.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: 'home',    component: HomeComponent },
+  { path: 'station', component: StationComponent },
+  { path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  { path: '**', component: HomeComponent }
+];
 
 @NgModule({
   declarations: [
@@ -24,7 +35,8 @@ import { HomeComponent } from './_component/home/home.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],
   providers: [],
   bootstrap: [AppComponent]
