@@ -28,6 +28,9 @@ export class StationComponent {
       this.requestInProgress = false;
       this.stations.push(stationFromServer);
       this.selectedStation = this.createEmptyStation();
+    }, (error) => {
+      console.error(error);
+      this.requestInProgress = false;
     });
   }
 
