@@ -1,6 +1,4 @@
-<h3>Navigation</h3>
-<ul>
-  <li><a routerLink="home">Home</a></li>
-  <li><a routerLink="station">Senderverwaltung</a></li>
-  <li>...</li>
-</ul>
+<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+  <a routerLink="home" class="nav-link" [routerLinkActive]="'active'" id="v-pills-home-tab" data-toggle="pill" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+  <a routerLink="station" class="nav-link" [routerLinkActive]="'active'" id="v-pills-profile-tab" data-toggle="pill" role="tab" aria-controls="v-pills-profile" aria-selected="false">Senderverwaltung</a>
+</div>
