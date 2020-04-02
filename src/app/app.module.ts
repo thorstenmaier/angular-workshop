@@ -8,6 +8,7 @@ import { NavigationComponent } from './_component/navigation/navigation.componen
 import { StationComponent } from './_component/station/station.component';
 import { StationEditComponent } from './_component/station-edit/station-edit.component';
 import { StationListComponent } from './_component/station-list/station-list.component';
+import { EditComponent } from './_component/edit/edit.component';
 import { CardComponent } from './_component/card/card.component';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { CardComponent } from './_component/card/card.component';
     StationComponent,
     StationEditComponent,
     StationListComponent
+    EditComponent,
     CardComponent
   ],
   imports: [
