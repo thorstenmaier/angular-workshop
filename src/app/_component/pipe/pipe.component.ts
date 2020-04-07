@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StationService } from 'src/app/_service/station.service';
 
 @Component({
   selector: 'app-pipe',
@@ -7,7 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PipeComponent implements OnInit {
 
-  constructor() { }
+  birthday = new Date();
+
+  object = {
+    id: 4,
+    name: "Thorsten"
+  }
+
+  stationService: StationService
+
+  constructor(stationService: StationService) {
+    this.stationService = stationService;
+  }
 
   ngOnInit(): void {
   }

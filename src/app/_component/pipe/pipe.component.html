@@ -1,0 +1,27 @@
+<h1>Pipes</h1>
+
+<h5>Number</h5>
+<div>{{"0.3235345345" | number: ".2-3"}}</div>
+<div>{{(0.3) | number: "3.2-3"}}</div>
+
+<h5>Prozent</h5>
+<div>{{(0.3) | percent}}</div>
+<div>{{(0.3) | percent: "1.2-2"}}</div>
+
+<h5>Währung</h5>
+<div>{{34 | currency: "EUR"}}</div> 
+
+<h5>Alles groß</h5>
+{{"Demo" | uppercase}} 
+
+<h5>Datum</h5>
+{{birthday | date}}
+
+<h5>JSON</h5>
+<div>{{object}}</div>
+<div>{{object | json}}</div>
+
+<h5>Async</h5>
+<div>{{stationService.getListObservable() | async | json}}</div>
+
+<a href="https://angular.io/api?type=pipe">https://angular.io/api?type=pipe</a>
