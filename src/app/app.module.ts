@@ -11,6 +11,8 @@ import { EditComponent } from './_component/edit/edit.component';
 import { CardComponent } from './_component/card/card.component';
 import { HomeComponent } from './_component/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
+import { PipeComponent } from './_component/pipe/pipe.component';
+
 import { LOCALE_ID} from '@angular/core';
 import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
@@ -20,6 +22,7 @@ registerLocaleData(localeDe, localeDeExtra);
 const appRoutes: Routes = [
   { path: 'home',    component: HomeComponent },
   { path: 'station', component: StationComponent },
+  { path: 'pipe', component: PipeComponent },
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -35,7 +38,8 @@ const appRoutes: Routes = [
     StationListComponent,
     EditComponent,
     CardComponent,
-    HomeComponent
+    HomeComponent,
+    PipeComponent
   ],
   imports: [
     BrowserModule,
