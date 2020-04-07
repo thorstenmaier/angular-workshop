@@ -11,6 +11,11 @@ import { EditComponent } from './_component/edit/edit.component';
 import { CardComponent } from './_component/card/card.component';
 import { HomeComponent } from './_component/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
+import { LOCALE_ID} from '@angular/core';
+import localeDe from '@angular/common/locales/de';
+import localeDeExtra from '@angular/common/locales/extra/de';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeDe, localeDeExtra);
 
 const appRoutes: Routes = [
   { path: 'home',    component: HomeComponent },
@@ -38,7 +43,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'de' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
