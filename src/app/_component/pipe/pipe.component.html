@@ -24,4 +24,9 @@
 <h5>Async</h5>
 <div>{{stationService.getListObservable() | async | json}}</div>
 
+<h5>Observables</h5>
+<div>{{observable | async}}</div>
+
+<button (click)="buttonClicked.next($event)">Click</button>
+
 <a href="https://angular.io/api?type=pipe">https://angular.io/api?type=pipe</a>

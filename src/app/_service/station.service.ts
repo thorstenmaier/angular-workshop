@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Station } from '../_interfaces/station';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StationService {
-
 
   httpClient: HttpClient;
 
@@ -19,6 +18,7 @@ export class StationService {
     return this.httpClient.post("http://localhost:8080/stations", station);
   }
 
+
   update(station: Station): Observable<any> {
     return this.httpClient.put(`http://localhost:8080/stations/${station.id}`, station);
   }
@@ -29,5 +29,17 @@ export class StationService {
 
   delete(station: Station): Observable<any> {
     return this.httpClient.delete(`http://localhost:8080/stations/${station.id}`);
+  }
+
+  listObservable: Subject<any> = new Subject<any>();
+
+  refreshList() {
+    this.httpClient.get("http://localhost:8080/stations").subscribe((data) => {
+      this.listObservable.next(data["_embedded"]["stations"]);
+    });
+  }
+
+  getListObservable() {
+    return this.listObservable;
   }
 }
