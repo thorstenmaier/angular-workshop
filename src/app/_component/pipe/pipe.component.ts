@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { StationService } from 'src/app/_service/station.service';
 import { Observable, interval, of, zip, Subject } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 
@@ -17,16 +16,11 @@ export class PipeComponent implements OnInit {
     name: "Thorsten"
   }
 
-  stationService: StationService
-
   observable: Observable<any>;
 
   buttonClicked = new Subject<any>();
 
-  constructor(stationService: StationService) {
-    this.stationService = stationService;
-    this.stationService.refreshList();
-
+  constructor() {
     this.buttonClicked.pipe(
       debounceTime(1000)
     ).subscribe((next) => {
