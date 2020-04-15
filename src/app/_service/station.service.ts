@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Station } from '../_interfaces/station';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { Command } from '../_interfaces/command';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,10 @@ export class StationService {
 
   constructor(httpClient: HttpClient) {
     this.httpClient = httpClient;
+  }
+
+  execute(command: Command): Observable<any> {
+    return this.httpClient.post("http://localhost:8080/execute", command);
   }
 
   create(station: Station): Observable<any> {

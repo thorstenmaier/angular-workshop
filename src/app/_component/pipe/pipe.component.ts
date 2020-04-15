@@ -25,6 +25,7 @@ export class PipeComponent implements OnInit {
 
   constructor(stationService: StationService) {
     this.stationService = stationService;
+    this.stationService.refreshList();
 
     this.buttonClicked.pipe(
       debounceTime(1000)
