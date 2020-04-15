@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { Station } from 'src/app/_interfaces/station';
-import { StationService } from 'src/app/_service/station.service';
+import { HttpService } from './../../_service/http.service';
+import { AddStationCommand } from './../../_interfaces/add-station-command';
+import { UdpateStationCommand } from 'src/app/_interfaces/update-station-command';
+import { DeleteStationCommand } from 'src/app/_interfaces/delete-station-command';
+import { ListStationCommand } from './../../_interfaces/list-station-command';
 
 @Component({
   selector: 'app-station',
@@ -13,20 +17,20 @@ export class StationComponent {
 
   selectedStation: Station = this.createEmptyStation();
 
-  stationService: StationService;
+  httpService: HttpService;
 
   requestInProgress = false;
 
-  constructor(stationService: StationService) {
-    this.stationService = stationService;
+  constructor(httpService: HttpService) {
+    this.httpService = httpService;
     this.loadAllStations();
   }
 
   onCreate() {
     this.requestInProgress = true;
-    this.stationService.create(this.selectedStation).subscribe((stationFromServer) => {
+    this.httpService.execute(new AddStationCommand(this.selectedStation)).subscribe((response) => {
       this.requestInProgress = false;
-      this.stations.push(stationFromServer);
+      this.stations.push(response.station);
       this.selectedStation = this.createEmptyStation();
     }, (error) => {
       console.error(error);
@@ -35,7 +39,7 @@ export class StationComponent {
   }
 
   onUpdate() {
-    this.stationService.update(this.selectedStation).subscribe((stationFromServer) => {
+    this.httpService.execute(new UdpateStationCommand(this.selectedStation)).subscribe((stationFromServer) => {
       this.selectedStation = this.createEmptyStation();
       this.loadAllStations();
     });
@@ -50,15 +54,15 @@ export class StationComponent {
   }
 
   onDelete() {
-    this.stationService.delete(this.selectedStation).subscribe((result) => {
+    this.httpService.execute(new DeleteStationCommand(this.selectedStation.id)).subscribe((result) => {
       this.selectedStation = this.createEmptyStation();
       this.loadAllStations();
     });
   }
 
   private loadAllStations() {
-    this.stationService.getAll().subscribe((data) => {
-      this.stations = data["_embedded"]["stations"]
+    this.httpService.execute(new ListStationCommand()).subscribe((response) => {
+      this.stations = response.stations;
     });
   }
 
