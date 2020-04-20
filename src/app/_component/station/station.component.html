@@ -14,8 +14,8 @@
   </div>
   <div class="form-group">
     <label for="inputName">Name</label>
-    <input required [(ngModel)]="selectedStation.name" name="selectedStation.name" type="text" class="form-control"
-      id="inputName">
+    <input [(ngModel)]="selectedStation.name" name="selectedStation.name" type="text" class="form-control {{(nameUnique$ | async) ? '' : 'invalid'}}"
+    id="inputName">
     <small *ngIf="!(nameUnique$ | async)" class="form-text text-danger">Sendername bereits vergeben</small>
   </div>
 </app-edit>
