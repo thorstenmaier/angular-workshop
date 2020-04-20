@@ -1,6 +1,6 @@
 <app-edit name="Sender"
           [edit]="selectedStation.id" 
-          [valid]="selectedStation.name && (nameUnique$ | async)"
+          [valid]="selectedStation.name && (nameUnique$ | async)" 
           [requestInProgress]="requestInProgress"
           (cancel)="onCancel()"
           (update)="onUpdate()"

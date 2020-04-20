@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
-import { flatMap, map, startWith } from 'rxjs/operators';
+import { debounceTime, filter, flatMap, map, share, startWith } from 'rxjs/operators';
 import { DeleteStationCommand } from 'src/app/_interfaces/delete-station-command';
 import { Station } from 'src/app/_interfaces/station';
 import { UdpateStationCommand } from 'src/app/_interfaces/update-station-command';
@@ -18,7 +18,7 @@ export class StationComponent {
 
   stations: Station[] = [];
 
-  selectedStation: Station = this.createEmptyStation();
+  _selectedStation: Station = this.createEmptyStation();
 
   httpService: HttpService;
 
@@ -33,8 +33,12 @@ export class StationComponent {
     this.loadAllStations();
 
     this.nameUnique$ = this.nameChangedSubject.pipe(
+      debounceTime(200), // 200ms auf geänderte Usereingabe warten
       map(station => JSON.parse(JSON.stringify(station))), // Station kopieren
+      // distinctUntilChanged((s1, s2) => s1.id === s2.id && s1.name === s2.name),
       flatMap(station => this.httpService.execute(new IsStationNameUniqueCommand(station.id ? station.id : "-1", station.name))),
+      share(),
+      filter(serverResult => serverResult && serverResult.name === this.selectedStation.name),
       map(serverResult => serverResult.unique),
       startWith(true),
     );
@@ -72,6 +76,15 @@ export class StationComponent {
       this.selectedStation = this.createEmptyStation();
       this.loadAllStations();
     });
+  }
+
+  get selectedStation(): Station {
+    return this._selectedStation;
+  }
+
+  set selectedStation(station: Station) {
+    this._selectedStation = station;
+    this.nameChangedSubject.next(station);
   }
 
   private loadAllStations() {
