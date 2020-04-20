@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { Station } from 'src/app/_interfaces/station';
-import { HttpService } from './../../_service/http.service';
-import { AddStationCommand } from './../../_interfaces/add-station-command';
-import { UdpateStationCommand } from 'src/app/_interfaces/update-station-command';
+import { Subject } from 'rxjs';
+import { flatMap, map, startWith } from 'rxjs/operators';
 import { DeleteStationCommand } from 'src/app/_interfaces/delete-station-command';
+import { Station } from 'src/app/_interfaces/station';
+import { UdpateStationCommand } from 'src/app/_interfaces/update-station-command';
+import { AddStationCommand } from './../../_interfaces/add-station-command';
+import { IsStationNameUniqueCommand } from './../../_interfaces/is-station-name-unique-command';
 import { ListStationCommand } from './../../_interfaces/list-station-command';
-import { startWith, map } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
+import { HttpService } from './../../_service/http.service';
 
 @Component({
   selector: 'app-station',
@@ -32,11 +33,13 @@ export class StationComponent {
     this.loadAllStations();
 
     this.nameUnique$ = this.nameChangedSubject.pipe(
-      map(val => true),
-      startWith(false)
+      map(station => JSON.parse(JSON.stringify(station))), // Station kopieren
+      flatMap(station => this.httpService.execute(new IsStationNameUniqueCommand(station.id ? station.id : "-1", station.name))),
+      map(serverResult => serverResult.unique),
+      startWith(true),
     );
   }
-
+  
   onCreate() {
     this.requestInProgress = true;
     this.httpService.execute(new AddStationCommand(this.selectedStation)).subscribe((response) => {
