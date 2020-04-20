@@ -1,6 +1,6 @@
 <app-edit name="Sender"
           [edit]="selectedStation.id" 
-          [valid]="selectedStation.name" 
+          [valid]="selectedStation.name && (nameUnique$ | async)"
           [requestInProgress]="requestInProgress"
           (cancel)="onCancel()"
           (update)="onUpdate()"
@@ -16,6 +16,7 @@
     <label for="inputName">Name</label>
     <input required [(ngModel)]="selectedStation.name" name="selectedStation.name" type="text" class="form-control"
       id="inputName">
+    <small *ngIf="!(nameUnique$ | async)" class="form-text text-danger">Sendername bereits vergeben</small>
   </div>
 </app-edit>
 

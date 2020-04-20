@@ -5,6 +5,8 @@ import { AddStationCommand } from './../../_interfaces/add-station-command';
 import { UdpateStationCommand } from 'src/app/_interfaces/update-station-command';
 import { DeleteStationCommand } from 'src/app/_interfaces/delete-station-command';
 import { ListStationCommand } from './../../_interfaces/list-station-command';
+import { startWith } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-station',
@@ -21,9 +23,13 @@ export class StationComponent {
 
   requestInProgress = false;
 
+  nameUnique$;
+
   constructor(httpService: HttpService) {
     this.httpService = httpService;
     this.loadAllStations();
+
+    this.nameUnique$ = new Subject().pipe(startWith(false));
   }
 
   onCreate() {
