@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, filter, flatMap, map, share, startWith } from 'rxjs/operators';
 import { DeleteStationCommand } from 'src/app/_interfaces/delete-station-command';
 import { Station } from 'src/app/_interfaces/station';
-import { UdpateStationCommand } from 'src/app/_interfaces/update-station-command';
+import { UpdateStationCommand } from 'src/app/_interfaces/update-station-command';
 import { AddStationCommand } from './../../_interfaces/add-station-command';
 import { IsStationNameUniqueCommand } from './../../_interfaces/is-station-name-unique-command';
 import { ListStationCommand } from './../../_interfaces/list-station-command';
@@ -57,7 +57,7 @@ export class StationComponent {
   }
 
   onUpdate() {
-    this.httpService.execute(new UdpateStationCommand(this.selectedStation)).subscribe((stationFromServer) => {
+    this.httpService.execute(new UpdateStationCommand(this.selectedStation)).subscribe((stationFromServer) => {
       this.selectedStation = this.createEmptyStation();
       this.loadAllStations();
     });

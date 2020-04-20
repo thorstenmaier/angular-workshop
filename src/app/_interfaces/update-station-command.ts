@@ -1,12 +1,12 @@
 import { Command } from './command';
 import { Station } from './station';
 
-export class UdpateStationCommand extends Command {
+export class UpdateStationCommand extends Command {
 
   station: Station;
 
   constructor(station: Station) {
-    super(UdpateStationCommand.name)
+    super(UpdateStationCommand.name)
     this.station = station;
   }
 
