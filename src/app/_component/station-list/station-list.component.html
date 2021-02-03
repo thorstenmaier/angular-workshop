@@ -1,19 +1,14 @@
-<div class="card" *ngIf="allStations.length > 0">
-  <div class="card-header">
-    Senderliste
-  </div>
-  <div class="card-body">
-    <table class="table table-sm">
-      <thead>
-        <th>Id</th>
-        <th>Name</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let station of allStations">
-          <td>{{station.id}}</td>
-          <td>{{station.name}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<app-card title="Senderliste" [show]="allStations.length > 0">
+  <table class="table table-sm">
+    <thead>
+      <th>Id</th>
+      <th>Name</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let station of allStations">
+        <td>{{ station.id }}</td>
+        <td>{{ station.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</app-card>

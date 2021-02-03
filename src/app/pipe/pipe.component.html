@@ -1,0 +1,16 @@
+<div>{{ "0.45654654" | number: ".1-3" }}</div>
+<div>{{ 0.3 | number: "3.2-3" }}</div>
+
+<div>{{ 0.3 | percent }}</div>
+<div>{{ 0.3 | percent: "3.3" }}</div>
+
+<div>{{ 30 | currency: "EUR" }}</div>
+<div>{{ 30 | mySuperCurrency }}</div>
+
+<div>{{ "bmw" | uppercase }}</div>
+
+<div>{{ date | date }}</div>
+
+<div>{{ data | json }}</div>
+
+<div>{{ stationService.getAllStations() | async | json }}</div>
