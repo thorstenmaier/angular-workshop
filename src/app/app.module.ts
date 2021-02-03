@@ -17,13 +17,15 @@ import { LOCALE_ID } from "@angular/core";
 import localeDe from "@angular/common/locales/de";
 import localeDeExtra from "@angular/common/locales/extra/de";
 import { registerLocaleData } from "@angular/common";
-import { MySuperCurrencyPipe } from './my-super-currency.pipe';
+import { MySuperCurrencyPipe } from "./my-super-currency.pipe";
+import { ReactiveComponent } from "./reactive/reactive.component";
 registerLocaleData(localeDe, localeDeExtra);
 
 const appRoutes: Routes = [
   { path: "station", component: StationComponent },
   { path: "home", component: HomeComponent },
   { path: "pipe", component: PipeComponent },
+  { path: "reactive", component: ReactiveComponent },
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "**", component: HomeComponent },
 ];
@@ -39,6 +41,7 @@ const appRoutes: Routes = [
     HomeComponent,
     PipeComponent,
     MySuperCurrencyPipe,
+    ReactiveComponent,
   ],
   imports: [
     BrowserModule,
