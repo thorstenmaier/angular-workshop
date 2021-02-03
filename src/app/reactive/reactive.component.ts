@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { combineLatest } from "rxjs";
+import { combineLatest, interval, Observable, of, zip } from "rxjs";
 import { debounce, debounceTime, delay } from "rxjs/operators";
 
 @Component({
@@ -15,7 +15,7 @@ export class ReactiveComponent implements OnInit {
 
   ngOnInit(): void {
     combineLatest([
-      this.aFormControl.valueChanges.pipe(debounceTime(300)),
+      this.aFormControl.valueChanges,
       this.bFormControl.valueChanges,
     ]).subscribe(([a, b]) => {
       this.resultFormControl.setValue(a + b);
