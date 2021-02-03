@@ -1,18 +1,21 @@
 <input
   [formControl]="aFormControl"
   placeholder="a"
-  class="form-control mt-3 mb-3"
+  class="form-control mt-3"
   type="number"
 />
 <input
   [formControl]="bFormControl"
   placeholder="b"
-  class="form-control mb-3"
+  class="form-control mt-3"
   type="number"
 />
 <input
   [formControl]="resultFormControl"
   placeholder="result"
-  class="form-control"
+  class="form-control mt-3"
   type="number"
 />
+
+<div class="mt-3">Counter: {{ countObservable$ | async }}</div>
+<div class="mt-3">Counter * Result: {{ result2$ | async }}</div>
