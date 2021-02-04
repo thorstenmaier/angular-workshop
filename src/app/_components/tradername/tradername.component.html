@@ -5,11 +5,10 @@
       <input
         type="text"
         class="form-control"
-        [class]="(tradernameExists$ | async) ? '' : 'is-invalid'"
+        [class]="tradernameExists ? '' : 'is-invalid'"
         id="tradername"
         aria-describedby="tradernameFeedback"
         required
-        (keyup)="tradernameChangedSubject.next($event.target.value)"
       />
       <div id="tradernameFeedback" class="invalid-feedback">
         Trader nicht bekannt
