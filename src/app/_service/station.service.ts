@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Station } from '../_interfaces/station';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Station } from "../_interfaces/station";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class StationService {
-
   httpClient: HttpClient;
 
   constructor(httpClient: HttpClient) {

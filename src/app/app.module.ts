@@ -4,11 +4,11 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
-import { NavigationComponent } from "./_component/navigation/navigation.component";
-import { StationComponent } from "./_component/station/station.component";
-import { StationEditComponent } from "./_component/station-edit/station-edit.component";
-import { StationListComponent } from "./_component/station-list/station-list.component";
-import { CardComponent } from "./_component/card/card.component";
+import { NavigationComponent } from "./_components/navigation/navigation.component";
+import { StationComponent } from "./_components/station/station.component";
+import { StationEditComponent } from "./_components/station-edit/station-edit.component";
+import { StationListComponent } from "./_components/station-list/station-list.component";
+import { CardComponent } from "./_components/card/card.component";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./_components/home/home.component";
 import { PipeComponent } from "./pipe/pipe.component";
@@ -19,6 +19,7 @@ import localeDeExtra from "@angular/common/locales/extra/de";
 import { registerLocaleData } from "@angular/common";
 import { MySuperCurrencyPipe } from "./my-super-currency.pipe";
 import { ReactiveComponent } from "./reactive/reactive.component";
+import { TradernameComponent } from "./_components/tradername/tradername.component";
 registerLocaleData(localeDe, localeDeExtra);
 
 const appRoutes: Routes = [
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "pipe", component: PipeComponent },
   { path: "reactive", component: ReactiveComponent },
+  { path: "tradername", component: TradernameComponent },
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "**", component: HomeComponent },
 ];
@@ -42,6 +44,7 @@ const appRoutes: Routes = [
     PipeComponent,
     MySuperCurrencyPipe,
     ReactiveComponent,
+    TradernameComponent,
   ],
   imports: [
     BrowserModule,
