@@ -8,10 +8,17 @@ import { debounceTime, filter, flatMap, map, startWith } from "rxjs/operators";
   templateUrl: "./tradername.component.html",
   styleUrls: ["./tradername.component.css"],
 })
-export class TradernameComponent implements OnInit {
-  tradernameExists = true;
+export class TradernameComponent {
+  tradernameExists$: Observable<boolean>;
+  tradernameChangedSubject = new Subject<string>();
 
-  constructor(private traderService: TradernameService) {}
+  constructor(private traderService: TradernameService) {
 
-  ngOnInit(): void {}
+    this.tradernameExists$ = this.tradernameChangedSubject.pipe(
+      debounceTime(300),
+      flatMap((tradername) => traderService.isTradernameExisting(tradername)),
+      map((te) => te.exists),
+      startWith(true)
+    );
+  }
 }

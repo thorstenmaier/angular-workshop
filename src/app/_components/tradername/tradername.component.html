@@ -5,14 +5,16 @@
       <input
         type="text"
         class="form-control"
-        [class]="tradernameExists ? '' : 'is-invalid'"
+        [class]="(tradernameExists$ | async) ? '' : 'is-invalid'"
         id="tradername"
         aria-describedby="tradernameFeedback"
         required
+        (keyup)="tradernameChangedSubject.next($event.target.value)"
       />
       <div id="tradernameFeedback" class="invalid-feedback">
         Trader nicht bekannt
       </div>
+      <mat-slider min="1" max="100" step="1" value="1"></mat-slider>
     </div>
   </div>
 </form>

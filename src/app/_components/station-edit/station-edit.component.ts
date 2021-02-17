@@ -1,22 +1,19 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Station } from 'src/app/_interfaces/station';
-import { StationService } from 'src/app/_service/station.service';
-
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Station } from "src/app/_interfaces/station";
+import { StationService } from "src/app/_service/station.service";
 
 @Component({
-  selector: 'app-station-edit',
-  templateUrl: './station-edit.component.html',
-  styleUrls: ['./station-edit.component.css']
+  selector: "app-station-edit",
+  templateUrl: "./station-edit.component.html",
+  styleUrls: ["./station-edit.component.css"],
 })
 export class StationEditComponent implements OnInit {
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   newStation: Station = {
     name: "",
-    id: ""
-  }
+    id: "",
+  };
 
   lastSavedStation: Station = null;
 
@@ -46,12 +43,11 @@ export class StationEditComponent implements OnInit {
       this.lastSavedStation = this.newStation;
       this.newStation = {
         name: "",
-        id: ""
-      }
+        id: "",
+      };
       setTimeout(() => {
         this.lastSavedStation = null;
       }, 5000);
     });
   }
-
 }

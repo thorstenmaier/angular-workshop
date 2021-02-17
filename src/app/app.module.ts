@@ -13,6 +13,8 @@ import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./_components/home/home.component";
 import { PipeComponent } from "./pipe/pipe.component";
 
+import { MatSliderModule } from "@angular/material/slider";
+
 import { LOCALE_ID } from "@angular/core";
 import localeDe from "@angular/common/locales/de";
 import localeDeExtra from "@angular/common/locales/extra/de";
@@ -20,6 +22,7 @@ import { registerLocaleData } from "@angular/common";
 import { MySuperCurrencyPipe } from "./my-super-currency.pipe";
 import { ReactiveComponent } from "./reactive/reactive.component";
 import { TradernameComponent } from "./_components/tradername/tradername.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 registerLocaleData(localeDe, localeDeExtra);
 
 const appRoutes: Routes = [
@@ -52,6 +55,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
+    MatSliderModule,
+    BrowserAnimationsModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: "de" }],
   bootstrap: [AppComponent],
